@@ -17,3 +17,12 @@ resource "aws_s3_bucket" "nks-storage" {
     Environment = "Dev"
   }
 }
+
+resource "aws_ebs_volume" "extra_volume" {
+  availability_zone = aws_instance.vm1.availability_zone
+  size              = var.ebs_size
+
+  tags = {
+    Name = var.ebs_name
+  }
+}
